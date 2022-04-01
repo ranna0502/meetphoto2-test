@@ -1,0 +1,41 @@
+p
+  | 活動地点
+= @address.name
+p
+  | 郵便番号
+= @address.post_code.to_s.insert(3, "-")
+p
+  | 住所
+= @address.address
+
+
+#map style='height: 500px; width: 500px;'
+
+- google_api = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDmAKiXJG-gyYGRyyYJIi2KwOXh-wiH6aU&callback=initMap".html_safe
+script{ async src=google_api }
+
+javascript:
+
+  let map;
+
+  function initMap() {
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+
+      center: {
+        lat: gon.address.latitude,
+        lng: gon.address.longitude
+      },
+      zoom: 12,
+    });
+
+    marker = new google.maps.Marker({
+
+      position: {
+        lat: gon.address.latitude,
+        lng: gon.address.longitude
+      },
+      map: map
+    });
+  }

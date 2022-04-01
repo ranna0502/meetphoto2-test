@@ -1,7 +1,20 @@
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
-    <div class='col-md-3'>
-      <h2>address/newページ</h2>
-    </div>
+<h2>活動地点を登録してください</h2>
+
+<%= form_with model: @address,local:true do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: '明治神宮' %>
   </div>
-</div>
+  <div class="form-group">
+    <%= f.label :post_code %>
+    <%= f.number_field :post_code, placeholder: '半角/ハイフン不要' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_area :address, placeholder: '東京都渋谷区代々木神園町0-0' %>
+  </div>
+
+    <div class="form-group">
+      <%= f.submit "新規登録", class:"btn btn-primary" %>
+    </div>
+<% end %>
